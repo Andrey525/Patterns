@@ -75,6 +75,21 @@
                 car.Break();
                 Console.WriteLine("</Observer>\n");
 
+                Behavior.Command.Programmer programmer = new Behavior.Command.Programmer();
+                Behavior.Command.Tester tester = new Behavior.Command.Tester();
+                Behavior.Command.Marketolog marketolog = new Behavior.Command.Marketolog();
+
+                List<Behavior.Command.ICommand> commands = new List<Behavior.Command.ICommand>
+                {
+                    new Behavior.Command.CodeCommand(programmer),
+                    new Behavior.Command.TestCommand(tester),
+                    new Behavior.Command.AdvertizeCommand(marketolog)
+                };
+                Behavior.Command.Manager manager = new Behavior.Command.Manager();
+                manager.SetCommand(new Behavior.Command.MacroCommand(commands));
+                manager.StartProject();
+                manager.StopProject();
+
             }
         }
     }
