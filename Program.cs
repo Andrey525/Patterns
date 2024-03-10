@@ -99,6 +99,34 @@
                 worker.TemplateMethod();
                 Console.WriteLine("</TemplateMEthod>\n");
 
+                Console.WriteLine("<Iterator>");
+                Behavior.Iterator.Garage garage = new Behavior.Iterator.Garage();
+                Behavior.Iterator.ICarIterator iter = garage.CreateIterator();
+                while (iter.HaveNext())
+                {
+                    Behavior.Iterator.Car c = iter.Next();
+                    Console.WriteLine(c.Name);
+                }
+                Console.WriteLine("</Iterator>\n");
+
+                Console.WriteLine("<Enumerator help=\"Realize IEnumerator\\IEnumerable\">");
+                Behavior.Iterator.MeArray meArray = new Behavior.Iterator.MeArray();
+                foreach (var elem in meArray)
+                {
+                    Console.WriteLine(elem.ToString());
+                }
+                Console.WriteLine("</Enumerator>\n");
+
+                Console.WriteLine("<State>");
+                Behavior.State.Car ca = new Behavior.State.Car(new Behavior.State.StoppedState());
+                ca.StartEngine();
+                ca.StopEngine();
+                ca.StopEngine();
+                ca.StartEngine();
+                ca.StartEngine();
+                ca.StopEngine();
+                ca.StartEngine();
+                Console.WriteLine("</State>\n");
             }
         }
     }
