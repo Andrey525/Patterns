@@ -161,7 +161,21 @@
                 prog.Send("New feature is ready!");
                 test.Send("Damn! It works wrong!");
 
-                Console.WriteLine("</Mediator>");
+                Console.WriteLine("</Mediator>\n");
+
+                Console.WriteLine("<Memento>");
+                Behavior.Memento.Hero hero = new Behavior.Memento.Hero();
+                hero.Shoot();
+                Behavior.Memento.GameHistory game = new Behavior.Memento.GameHistory();
+
+                game.History.Push(hero.SaveState());
+
+                hero.Shoot();
+
+                hero.RestoreState(game.History.Pop());
+
+                hero.Shoot();
+                Console.WriteLine("</Memento>\n");
             }
         }
     }
