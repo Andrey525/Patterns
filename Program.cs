@@ -75,6 +75,7 @@
                 car.Break();
                 Console.WriteLine("</Observer>\n");
 
+                Console.WriteLine("<Command>");
                 Behavior.Command.Programmer programmer = new Behavior.Command.Programmer();
                 Behavior.Command.Tester tester = new Behavior.Command.Tester();
                 Behavior.Command.Marketolog marketolog = new Behavior.Command.Marketolog();
@@ -89,6 +90,14 @@
                 manager.SetCommand(new Behavior.Command.MacroCommand(commands));
                 manager.StartProject();
                 manager.StopProject();
+                Console.WriteLine("</Command>\n");
+
+                Console.WriteLine("<TemplateMethod>");
+                Behavior.TemplateMethod.Worker worker = new Behavior.TemplateMethod.LazyWorker();
+                worker.TemplateMethod();
+                worker = new Behavior.TemplateMethod.HardWorker();
+                worker.TemplateMethod();
+                Console.WriteLine("</TemplateMEthod>\n");
 
             }
         }
