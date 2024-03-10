@@ -127,6 +127,16 @@
                 ca.StopEngine();
                 ca.StartEngine();
                 Console.WriteLine("</State>\n");
+
+                Console.WriteLine("<ChainOfResponsibility>");
+                var singleShootHandler = new Behavior.ChainOfResponsibility.SingleShootHandler();
+                var burstShootHandler = new Behavior.ChainOfResponsibility.BurstShootHandler();
+                var automaticShootHandler = new Behavior.ChainOfResponsibility.AutomaticShootHandler();
+                automaticShootHandler.NextHandler = burstShootHandler;
+                burstShootHandler.NextHandler = singleShootHandler;
+                Behavior.ChainOfResponsibility.Gun gun = new Behavior.ChainOfResponsibility.Gun(singleShootSupport: true, burstShootSupport: true, automaticShootSupport: false, automaticShootHandler);
+                gun.Fire();
+                Console.WriteLine("</ChainOfResponsibility>\n");
             }
         }
     }
