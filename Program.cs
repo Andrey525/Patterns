@@ -167,15 +167,26 @@
                 Behavior.Memento.Hero hero = new Behavior.Memento.Hero();
                 hero.Shoot();
                 Behavior.Memento.GameHistory game = new Behavior.Memento.GameHistory();
-
                 game.History.Push(hero.SaveState());
-
                 hero.Shoot();
-
                 hero.RestoreState(game.History.Pop());
-
                 hero.Shoot();
                 Console.WriteLine("</Memento>\n");
+
+                Console.WriteLine("<Visitor>");
+                Behavior.Visitor.IAccept[] array = { new Behavior.Visitor.Car(), new Behavior.Visitor.Moto() };
+
+                Behavior.Visitor.IVisitor visitor = new Behavior.Visitor.RepairVisitor();
+                foreach (var elem in array)
+                {
+                    elem.Accept(visitor);
+                }
+                visitor = new Behavior.Visitor.PaintVisitor();
+                foreach (var elem in array)
+                {
+                    elem.Accept(visitor);
+                }
+                Console.WriteLine("</Visitor>\n");
             }
         }
     }
