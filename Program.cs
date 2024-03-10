@@ -148,6 +148,20 @@
                                                                                                new Behavior.Interpreter.NumberExpression("Z"));
                 Console.WriteLine(expr.Interpret(context));
                 Console.WriteLine("</Interpreter>\n");
+
+                Console.WriteLine("<Mediator>");
+                var mediator = new Behavior.Mediator.ManagerMediator();
+                Behavior.Mediator.Colleague customer = new Behavior.Mediator.CustomerColleague(mediator);
+                Behavior.Mediator.Colleague prog = new Behavior.Mediator.ProgrammerColleague(mediator);
+                Behavior.Mediator.Colleague test = new Behavior.Mediator.TesterColleague(mediator);
+                mediator.Customer = customer;
+                mediator.Programmer = prog;
+                mediator.Tester = test;
+                customer.Send("I need new feature!");
+                prog.Send("New feature is ready!");
+                test.Send("Damn! It works wrong!");
+
+                Console.WriteLine("</Mediator>");
             }
         }
     }
