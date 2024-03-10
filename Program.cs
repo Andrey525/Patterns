@@ -137,6 +137,17 @@
                 Behavior.ChainOfResponsibility.Gun gun = new Behavior.ChainOfResponsibility.Gun(singleShootSupport: true, burstShootSupport: true, automaticShootSupport: false, automaticShootHandler);
                 gun.Fire();
                 Console.WriteLine("</ChainOfResponsibility>\n");
+
+                Console.WriteLine("<Interpreter>");
+                Behavior.Interpreter.Context context = new Behavior.Interpreter.Context();
+                context.SetVariable("X", 10);
+                context.SetVariable("Y", 15);
+                context.SetVariable("Z", 10);
+                Behavior.Interpreter.IExpression expr = new Behavior.Interpreter.SubExpression(new Behavior.Interpreter.SubExpression(new Behavior.Interpreter.NumberExpression("X"),
+                                                                                                                                  new Behavior.Interpreter.NumberExpression("Y")),
+                                                                                               new Behavior.Interpreter.NumberExpression("Z"));
+                Console.WriteLine(expr.Interpret(context));
+                Console.WriteLine("</Interpreter>\n");
             }
         }
     }
