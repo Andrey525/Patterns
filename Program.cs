@@ -229,17 +229,24 @@
                 Structural.Composite.Component comp3 = new Structural.Composite.Composite("Servers");
                 Structural.Composite.Component comp3_1 = new Structural.Composite.Leaf("Server 1");
                 Structural.Composite.Component comp4 = new Structural.Composite.Leaf("Manager");
-
                 comp1.Add(comp2);
                 comp1.Add(comp3);
                 comp1.Add(comp4);
                 comp2.Add(comp2_1);
                 comp2.Add(comp2_2);
                 comp3.Add(comp3_1);
-
                 comp1.Display();
-
                 Console.WriteLine("</Composite>\n");
+
+                Console.WriteLine("<Proxy>");
+                Structural.Proxy.IBook book = new Structural.Proxy.BookStoreProxy();
+                Structural.Proxy.Page page1 = book.GetPage(1);
+                Console.WriteLine(page1.Text);
+                Structural.Proxy.Page page2 = book.GetPage(2);
+                Console.WriteLine(page2.Text);
+                page1 = book.GetPage(1);
+                Console.WriteLine(page1.Text);
+                Console.WriteLine("</Proxy>\n");
             }
         }
     }
