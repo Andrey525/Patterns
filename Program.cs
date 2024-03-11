@@ -187,6 +187,23 @@
                     elem.Accept(visitor);
                 }
                 Console.WriteLine("</Visitor>\n");
+
+                /* Structural patterns */
+                Console.WriteLine("<Decorator>");
+                Structural.Decorator.House house = new Structural.Decorator.StoneHouse();
+                house.ShowInfo();
+                house = new Structural.Decorator.HouseWithPool(house);
+                house.ShowInfo();
+                house = new Structural.Decorator.HouseWithFirePlace(house);
+                house.ShowInfo();
+
+                house = new Structural.Decorator.WoodHouse();
+                house.ShowInfo();
+                house = new Structural.Decorator.HouseWithPool(house);
+                house.ShowInfo();
+                house = new Structural.Decorator.HouseWithFirePlace(house);
+                house.ShowInfo();
+                Console.WriteLine("</Decorator>\n");
             }
         }
     }
