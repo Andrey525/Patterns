@@ -213,6 +213,33 @@
                 weapon = new Structural.Adapter.TeethToWeaponAdapter(teeth);
                 knight.Hit(weapon);
                 Console.WriteLine("</Adapter>\n");
+
+                Console.WriteLine("<Facade>");
+                Structural.Facade.Algorithm1 alg1 = new Structural.Facade.Algorithm1();
+                Structural.Facade.Algorithm2 alg2 = new Structural.Facade.Algorithm2();
+                Structural.Facade.AlgFacade alg = new Structural.Facade.AlgFacade(alg1, alg2);
+                alg.Start();
+                Console.WriteLine("</Facade>\n");
+
+                Console.WriteLine("<Composite>");
+                Structural.Composite.Component comp1 = new Structural.Composite.Composite("Root");
+                Structural.Composite.Component comp2 = new Structural.Composite.Composite("Clients");
+                Structural.Composite.Component comp2_1 = new Structural.Composite.Leaf("Client 1");
+                Structural.Composite.Component comp2_2 = new Structural.Composite.Leaf("Client 2");
+                Structural.Composite.Component comp3 = new Structural.Composite.Composite("Servers");
+                Structural.Composite.Component comp3_1 = new Structural.Composite.Leaf("Server 1");
+                Structural.Composite.Component comp4 = new Structural.Composite.Leaf("Manager");
+
+                comp1.Add(comp2);
+                comp1.Add(comp3);
+                comp1.Add(comp4);
+                comp2.Add(comp2_1);
+                comp2.Add(comp2_2);
+                comp3.Add(comp3_1);
+
+                comp1.Display();
+
+                Console.WriteLine("</Composite>\n");
             }
         }
     }
