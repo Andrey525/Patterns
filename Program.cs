@@ -204,6 +204,15 @@
                 house = new Structural.Decorator.HouseWithFirePlace(house);
                 house.ShowInfo();
                 Console.WriteLine("</Decorator>\n");
+
+                Console.WriteLine("<Adapter>");
+                Structural.Adapter.Weapon weapon = new Structural.Adapter.Sword();
+                Structural.Adapter.Teeth teeth = new Structural.Adapter.Teeth();
+                Structural.Adapter.Knight knight = new Structural.Adapter.Knight();
+                knight.Hit(weapon);
+                weapon = new Structural.Adapter.TeethToWeaponAdapter(teeth);
+                knight.Hit(weapon);
+                Console.WriteLine("</Adapter>\n");
             }
         }
     }
